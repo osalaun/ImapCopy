@@ -1,0 +1,32 @@
+Copyright Olivier Salaün 2015
+
+The imap_copy.pl script allows to copy content of mail folders 
+from one IMAP server to another IMAP server. A configuration file is used to define
+connexion parameters for each IMAP server. List of folders to copy and the corresponding
+destination folders can either be specified with command line option or in the
+configuration file (useful for bulk copying a set of folders). A sample configuration file
+is provided.
+
+See below example of script calls:
+
+Example 1: list folders on SRC IMAP server
+  ./imap_copy.pl --config=Conf.pm --list_folders --src_server=my_imap_src
+
+Example 2: list messages on INBOX folder from SRC IMAP server
+  ./imap_copy.pl --config=Conf.pm --list_messages --src_server=my_imap_src --src_folder=INBOX
+
+Example 3: Copy content of folder Work/CV of SRC IMAP to foder CV of DEST IMAP server
+  ./imap_copy.pl --config=Conf.pm --migrate --src_server=my_imap_src --src_folder=Work/CV --dest_server=my_imap_dest --dest_folder=CV
+
+Example 4: Copy folders from SRC IMAP server to DEST IMAP server. List of src and dest
+folders are defined in configuration file.
+  ./imap_copy.pl --config=Conf.pm --migrate --src_server=my_imap_src  --dest_server=my_imap_dest
+
+Example 5: Rename a folder on SRC IMAP server
+  ./imap_copy.pl --config=Conf.pm --rename_folder --src_server=my_imap_src --src_folder=Archives --dest_folder=_Archives
+
+Installation requirements :
+ - perl
+ - Mail::IMAPClient library (see http://search.cpan.org/~djkernen/Mail-IMAPClient-2.2.9/)
+
+See http://www.athensfbc.com/imap_tools/details.html for alternative IMAP tools
